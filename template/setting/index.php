@@ -5,9 +5,12 @@ http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 	<link href="<?php echo STATIC_PATH;?>style/font-awesome/style.css" rel="stylesheet"/>
 	<link href="<?php echo STATIC_PATH;?>style/bootstrap.css" rel="stylesheet"/>	  
-	
+	<?php if(STATIC_LESS == 'css'){ ?>
 	<link href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_setting.css" rel="stylesheet" id='link_css_list'/>
-	
+	<?php }else{//less_compare_online ?>
+	<link rel="stylesheet/less" type="text/css" href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_setting.less"/>
+	<script src="<?php echo STATIC_PATH;?>js/lib/less-1.4.2.min.js"></script>	
+	<?php } ?>
 </head>
 <style>
 	#body table tr.title td{line-height: 2.5em;height: 2.5em;}
@@ -45,7 +48,7 @@ http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 		base: "<?php echo STATIC_PATH;?>js/",
 		preload: ["lib/jquery-1.8.0.min"]
 	});
-	seajs.use('app/src/setting/main');
+	seajs.use('<?php echo STATIC_JS;?>/src/setting/main');
 </script>
 </body>
 </html>

@@ -8,9 +8,12 @@
 	<link href="<?php echo STATIC_PATH;?>style/font-awesome/style.css" rel="stylesheet"/>
 	<link href="<?php echo STATIC_PATH;?>js/lib/webuploader/webuploader.css" rel="stylesheet"/>    
 	<link href="<?php echo STATIC_PATH;?>js/lib/picasa/style/style.css" rel="stylesheet"/>
-	
+	<?php if(STATIC_LESS == 'css'){ ?>
 	<link href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_desktop.css" rel="stylesheet" id='link_css_list'/>
-	
+	<?php }else{//less_compare_online ?>
+	<link rel="stylesheet/less" type="text/css" href="<?php echo STATIC_PATH;?>style/skin/<?php echo $config['user']['theme'];?>app_desktop.less"/>
+	<script src="<?php echo STATIC_PATH;?>js/lib/less-1.4.2.min.js"></script>   
+	<?php } ?>
 	<style type="text/css" media="screen">
 	.desktop{
 		background:#222 url('<?php echo $wall;?>');
@@ -42,12 +45,10 @@
 				<div class="titleBox"><span><?php echo $L['app_store'];?></span></div>
 			</div>
 		</div>
-   </div><!-- html5拖拽上传list -->
-
-   <div id="taskbar" style="display:block;">
-		<a href="#" class="start"></a>
-		<div id="desktop"></div>
-	</div>
+	</div><!-- html5拖拽上传list -->
+	
+	<a href="#" class="start"></a>
+	<div id="taskbar" style="display:block;"><div id="desktop"></div></div>
 	<div id="menuwin">
 		<div id="startmenu"></div>
 		<ul id="programs">
@@ -82,10 +83,10 @@
 		web_host 	: "<?php echo HOST;?>",
 		static_path : "<?php echo STATIC_PATH;?>",
 		basic_path  : "<?php echo BASIC_PATH;?>",
+		public_path  : "<?php echo PUBLIC_PATH;?>",
 		upload_max  : "<?php echo $upload_max;?>",
 		version 	: "<?php echo KOD_VERSION;?>",
 		app_host 	: "<?php echo APPHOST;?>",
-
 		this_path   : "<?php echo MYHOME.'desktop/';?>",//当前绝对路径
 		web_path    : "<?php echo str_replace(WEB_ROOT,'', USER.'home/desktop/');?>",// 当前url目录
 		
@@ -99,7 +100,7 @@
 		base: "<?php echo STATIC_PATH;?>js/",
 		preload: ["lib/jquery-1.8.0.min"]
 	});
-	seajs.use("app/src/desktop/main");
+	seajs.use("<?php echo STATIC_JS;?>/src/desktop/main");
 </script>
 </body>
 </html>
